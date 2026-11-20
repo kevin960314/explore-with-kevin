@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="theme-color" content="#F7F4EE" />
+<meta name="description" content="Kevin's World — 跟著 MINI ME，探索電商營運、行銷與數位產品的工作經驗，以及攝影與創作的生活日常。" />
+<title>Kevin's World — Stay Curious, Keep Exploring.</title>
+<style>
+:root { --ivory:#F7F4EE; --blue:#355C8A; --apricot:#D6A67A; --sage:#8BA58F; --brown:#403934; --muted:#716B64; --line:#E7DED3; --white:#fff; --bluewash:#EDF2F7; --peachwash:#FAF0E5; --radius:25px; --shadow:0 18px 50px rgba(64,57,52,.07); }
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--ivory);color:var(--brown);font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC","Microsoft JhengHei",sans-serif;line-height:1.7}button,a{font:inherit}button{cursor:pointer}a{color:inherit}button:focus-visible,a:focus-visible{outline:3px solid var(--blue);outline-offset:4px}::selection{background:#D4E3ED} .skip-link{position:absolute;left:12px;top:-60px;padding:9px 15px;background:#fff;z-index:99}.skip-link:focus{top:12px}
+.site-header{display:flex;align-items:center;justify-content:space-between;gap:16px;max-width:1240px;margin:auto;padding:23px 32px;min-height:82px}.brand{font-weight:900;font-family:Georgia,serif;font-size:29px;letter-spacing:-1.5px;text-decoration:none}.brand .dot{color:var(--apricot)}.topnav{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.nav-btn{border:0;background:transparent;padding:8px 12px;color:var(--muted);border-radius:40px;font-size:14px}.nav-btn:hover,.nav-btn[aria-current=page]{color:var(--blue);background:#e9edf0}.nav-cta{border:1px solid var(--line);background:white;padding:8px 14px;border-radius:50px;font-weight:700;font-size:13px}.shell{max-width:1240px;padding:8px 32px 70px;margin:auto}.stage{display:none;animation:appear .44s both}.stage.active{display:block}@keyframes appear{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}} .eyebrow{font-size:12px;font-weight:800;letter-spacing:.17em;text-transform:uppercase;color:#9A7554}.eyebrow.blue{color:var(--blue)}.eyebrow.peach{color:#99683E}h1,h2,h3,p{margin:0}h1,h2,h3{line-height:1.18;letter-spacing:-.045em}h1{font-size:clamp(45px,6.3vw,86px)}h2{font-size:clamp(32px,4.2vw,60px)}h3{font-size:clamp(21px,2.3vw,29px)}p{color:var(--muted)}.hero{display:grid;grid-template-columns:minmax(0,1.07fr) minmax(0,.93fr);min-height:690px;gap:50px;align-items:center;padding:14px 10px 40px}.hero-copy{padding:38px 0}.hero h1{margin:14px 0 26px}.hero h1 em{font-style:normal;color:var(--blue)}.hero-copy .lead{font-size:clamp(17px,1.65vw,21px);max-width:500px;line-height:1.95}.hero-actions,.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}.btn{border:1px solid var(--brown);background:var(--brown);color:white;border-radius:99px;padding:13px 25px;font-weight:750;transition:transform .2s,background .2s,box-shadow .2s;text-align:center}.btn:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(64,57,52,.14)}.btn.secondary{background:white;color:var(--brown);border-color:var(--line)}.btn.blue{background:var(--blue);border-color:var(--blue)}.btn.peach{background:#92623F;border-color:#92623F}.artboard{position:relative;border-radius:42px;min-height:550px;display:flex;justify-content:center;align-items:center;background:radial-gradient(circle at 45% 45%,#FFFDF8 0,#EEE6DA 70%,#E9DDCE 100%);overflow:hidden;box-shadow:var(--shadow)}.artboard:before{content:"";position:absolute;width:70%;aspect-ratio:1;background:rgba(255,255,255,.55);border-radius:50%;top:12%;left:15%}.artboard .outline{position:absolute;font-size:150px;line-height:1;color:rgba(214,166,122,.18);top:-15px;right:30px;font-family:Georgia,serif}.char-img{position:relative;z-index:1;width:100%;max-width:450px;height:540px;object-fit:contain;filter:drop-shadow(0 18px 22px rgba(58,47,38,.06));animation:float 5s ease-in-out infinite}@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}.wave-actor{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;width:100%;height:540px;overflow:hidden}
+.wave-actor .char-img{position:absolute;inset:0;margin:auto;animation:none}
+.wave-actor .wave-gif{position:absolute;z-index:2;width:100%;max-width:450px;height:540px;object-fit:contain;opacity:0;pointer-events:none}
+.wave-actor.is-playing .char-img{opacity:0}
+.wave-actor.is-playing .wave-gif{opacity:1}
+.animation-controls{position:absolute;z-index:4;top:18px;right:18px;display:flex;gap:7px;flex-wrap:wrap;justify-content:end}
+.animation-controls button{border:1px solid #dfd5c9;background:rgba(255,255,255,.90);border-radius:99px;font-size:12px;padding:7px 11px;color:var(--brown);cursor:pointer}
+.animation-controls button:hover{background:white}
+.animation-controls button:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.bubble{position:absolute;z-index:2;left:17px;bottom:25px;background:rgba(255,255,255,.96);padding:13px 18px;border-radius:18px 18px 18px 5px;box-shadow:0 10px 25px rgba(64,57,52,.1);font-size:14px;font-weight:750;max-width:78%}.spark{position:absolute;z-index:2;top:38px;left:29px;font-size:22px;color:#A07F5D}.scroll-note{text-align:center;color:#9A8E80;font-size:11px;letter-spacing:.22em;margin-top:-12px}.feature-strip{display:flex;justify-content:center;gap:35px;flex-wrap:wrap;border-top:1px solid var(--line);padding:24px 0;color:#8B847B;font-size:12px;letter-spacing:.11em;font-weight:750}
+.section-intro{max-width:760px;margin:38px auto 35px;text-align:center}.section-intro h2{margin:12px 0 17px}.section-intro p{font-size:17px}.panel{border:1px solid var(--line);border-radius:var(--radius);background:white;box-shadow:var(--shadow);padding:32px}.story-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:28px}.story-item{border-radius:22px;background:white;padding:28px 24px;min-height:200px;border:1px solid var(--line)}.story-item .symbol{font-size:27px;margin-bottom:17px}.story-item h3{font-size:21px;margin-bottom:12px}.quote{margin:38px auto;text-align:center;font-size:clamp(22px,3vw,33px);max-width:760px;line-height:1.6;font-weight:750;color:var(--brown)}.quote b{color:var(--blue)}
+.path-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}.path-card{position:relative;display:flex;flex-direction:column;justify-content:space-between;min-width:0;min-height:470px;border:0;text-align:left;border-radius:32px;overflow:hidden;padding:34px;background:var(--bluewash);transition:transform .25s,box-shadow .25s}.path-card:hover{transform:translateY(-5px);box-shadow:var(--shadow)}.path-card.life{background:var(--peachwash)}.path-card .head{z-index:2;position:relative}.path-card .head small{font-size:12px;letter-spacing:.12em;color:var(--blue);font-weight:900}.path-card.life .head small{color:#95613C}.path-card h3{font-size:37px;margin:10px 0}.path-card .head p{max-width:220px;font-size:14px}.path-card img{position:absolute;right:-10%;bottom:-14%;width:75%;height:95%;object-fit:contain;transition:transform .35s}.path-card:hover img{transform:scale(1.045) translateY(-5px)}.path-card .arrow{position:relative;z-index:3;background:white;display:grid;place-items:center;border-radius:50%;width:46px;height:46px;font-size:22px;box-shadow:0 4px 15px rgba(0,0,0,.04)}.path-card .visited{position:absolute;right:26px;top:25px;z-index:5;font-size:12px;color:#66735F;background:#ECF4E8;border-radius:20px;padding:5px 11px;display:none}.path-card.seen .visited{display:block}
+.chapter-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:20px 0 28px}.backlink{border:0;background:none;color:var(--muted);font-size:14px;padding:7px 0}.chapter-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.85fr);gap:30px;align-items:center;padding:52px 50px;border-radius:35px;background:var(--bluewash);overflow:hidden}.chapter-head.life-head{background:var(--peachwash)}.chapter-head h2{margin:12px 0 18px}.chapter-head p{max-width:480px;font-size:17px}.chapter-head .mini-visual{height:390px;display:flex;align-items:center;justify-content:center;overflow:hidden}.chapter-head img{width:100%;height:100%;object-fit:contain;mix-blend-mode:normal}.chapter-hello{margin-top:20px;padding:14px 17px;border-radius:14px;background:rgba(255,255,255,.76);display:inline-block;font-size:14px;font-weight:700;color:var(--brown)}.detail-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:17px;margin:28px 0}.detail-card{padding:28px;border-radius:21px;background:white;border:1px solid var(--line);min-height:235px}.detail-card .num{font-size:12px;letter-spacing:.2em;color:#A28B76;font-weight:800}.detail-card h3{font-size:23px;margin:13px 0 14px}.detail-card p{font-size:14px}.note{padding:20px 24px;border-left:3px solid var(--sage);background:#EDF0E8;border-radius:0 14px 14px 0;color:#5F695E;font-size:14px}.end-card{text-align:center;background:white;border:1px solid var(--line);border-radius:36px;padding:70px 24px;margin:45px auto;max-width:850px;box-shadow:var(--shadow)}.end-card h2{margin:12px 0 22px}.end-card p{max-width:600px;margin:auto}.end-card .actions{justify-content:center}.footer{border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;padding:22px 0;margin-top:40px;font-size:12px;color:#90867A}.status{font-size:12px;color:#8A8278}.hidden{display:none!important}
+@media(max-width:900px){.wave-actor,.wave-actor .wave-gif{height:440px}.hero{gap:24px;min-height:550px}.artboard{min-height:440px}.char-img{height:440px}.chapter-head{padding:32px}.chapter-head .mini-visual{height:300px}.path-card{min-height:400px}.path-card img{width:90%;right:-25%}}
+@media(max-width:680px){.wave-actor,.wave-actor .wave-gif{height:365px}.animation-controls{top:9px;right:9px}.animation-controls button{font-size:11px;padding:5px 9px}.site-header{padding:16px 18px;min-height:64px}.topnav{gap:2px}.nav-btn{font-size:12px;padding:6px}.nav-cta{font-size:12px;padding:7px 9px}.shell{padding:3px 18px 35px}.hero{grid-template-columns:1fr;gap:5px;min-height:auto;padding:20px 0}.hero-copy{padding:15px 0 3px}.hero h1{font-size:clamp(43px,11vw,67px);margin:9px 0 13px}.hero-copy .lead{font-size:15px}.hero-actions{margin-top:22px}.artboard{min-height:365px;border-radius:24px}.char-img{height:365px;max-width:320px}.bubble{font-size:12px;left:10px;bottom:10px}.scroll-note{margin:18px 0}.story-grid,.detail-grid,.path-grid{grid-template-columns:1fr}.story-item,.detail-card{min-height:0}.path-card{min-height:365px}.path-card img{right:-6%;bottom:-20%;height:110%;width:73%}.path-card .head{max-width:65%}.path-card h3{font-size:31px}.chapter-head{grid-template-columns:1fr;gap:6px;padding:27px;border-radius:22px}.chapter-head .mini-visual{height:290px}.section-intro{margin:35px auto 27px}.section-intro p,.chapter-head p{font-size:15px}.panel{padding:22px}.footer{flex-direction:column}.feature-strip{gap:15px;font-size:10px}.end-card{padding:45px 20px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+
+/* V1.2 — fixed-size transparent animation layers, avoiding layout reflow. */
+.chapter-visual{position:relative;isolation:isolate;min-width:0}
+.chapter-actor{position:relative;width:100%;height:100%;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.chapter-actor img{display:block;position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center bottom;pointer-events:none;filter:drop-shadow(0 12px 15px rgba(64,57,52,.06));transition:opacity .12s linear}
+.chapter-actor .chapter-gif{opacity:0;z-index:2}
+.chapter-actor .chapter-still{opacity:1;z-index:1}
+.chapter-actor.is-playing .chapter-gif{opacity:1}
+.chapter-actor.is-playing .chapter-still{opacity:0}
+.chapter-animation-controls{display:flex;gap:7px;position:absolute;right:9px;top:9px;z-index:5;flex-wrap:wrap;justify-content:flex-end}
+.chapter-animation-controls button{border:1px solid #d9d3c9;border-radius:50px;background:rgba(255,255,255,.94);color:var(--brown);padding:7px 10px;font-size:12px;line-height:1.25;cursor:pointer}
+.chapter-animation-controls button:hover{background:#fff}
+.chapter-animation-controls button:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.chapter-animation-controls button[hidden],.animation-controls button[hidden]{display:none!important}
+@media(max-width:680px){.chapter-animation-controls{top:6px;right:6px}.chapter-animation-controls button{padding:5px 8px;font-size:11px}}
+
+/* V1.3 — four-scene story, additive styles over the approved V1.2 design. */
+.story-v13 .section-intro{max-width:840px;margin:24px auto 27px}
+.story-v13 .section-intro h2{font-size:clamp(34px,4.9vw,63px);margin:12px 0}
+.story-v13 .section-intro p{font-size:16px}
+.story-topline{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:18px 0 0;flex-wrap:wrap}
+.story-topline .backlink{color:var(--brown)}
+.story-topline .story-fast{border:none;background:none;color:var(--blue);font-size:13px;font-weight:750;text-decoration:underline;text-underline-offset:4px;padding:8px}
+.story-stepper{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:24px auto 17px;max-width:1080px}
+.story-step{display:flex;align-items:center;min-width:0;gap:12px;background:rgba(255,255,255,.56);border:1px solid var(--line);border-radius:16px;padding:11px 13px;text-align:left;color:var(--brown);transition:background .18s, border-color .18s, box-shadow .18s}
+.story-step:hover{background:#fff;box-shadow:0 8px 16px rgba(64,57,52,.05)}
+.story-step[aria-current="step"]{background:#fff;border-color:var(--blue);box-shadow:0 4px 16px rgba(53,92,138,.10)}
+.story-step .step-number{flex:none;display:grid;place-items:center;border-radius:50%;height:32px;width:32px;background:#EEE6DC;font-size:12px;font-weight:800;color:#7B6A59}
+.story-step[aria-current="step"] .step-number{background:var(--blue);color:#fff}
+.story-step .step-label{display:flex;flex-direction:column;min-width:0;line-height:1.3;gap:3px}
+.story-step .step-label strong{font-size:13px;letter-spacing:-.01em}
+.story-step .step-label small{font-size:11px;color:#83776B}
+.story-progress-track{height:5px;border-radius:10px;background:#E4DCD2;max-width:1080px;margin:0 auto 20px;overflow:hidden}
+.story-progress-fill{height:100%;background:var(--blue);width:25%;border-radius:10px;transition:width .25s ease}
+.story-board{display:grid;grid-template-columns:minmax(0,.83fr) minmax(0,1.17fr);gap:22px;align-items:stretch}
+.story-visual{position:relative;overflow:hidden;isolation:isolate;background:radial-gradient(circle at 42% 40%,#FFFDF8 0%,#EFE7DB 69%,#E9DED1 100%);border-radius:32px;min-height:570px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:30px 20px 80px}
+.story-visual:before{content:"";position:absolute;border:1px solid rgba(255,255,255,.85);border-radius:50%;width:76%;aspect-ratio:1;top:13%;left:12%;pointer-events:none}
+.story-visual .story-spark{position:absolute;left:25px;top:24px;letter-spacing:.45em;color:#A58B6D;font-size:20px}
+.story-visual .story-character{position:relative;display:block;width:100%;max-width:370px;max-height:460px;object-fit:contain;filter:drop-shadow(0 15px 20px rgba(58,47,38,.08));z-index:1}
+.story-visual .story-bubble{z-index:2;position:absolute;bottom:25px;left:20px;right:20px;padding:14px 17px;background:rgba(255,255,255,.97);border-radius:17px 17px 17px 5px;box-shadow:0 12px 27px rgba(64,57,52,.07);font-size:14px;font-weight:750;line-height:1.55}
+.story-storycard{background:#fff;border:1px solid var(--line);border-radius:32px;min-width:0;padding:clamp(22px,3vw,42px);box-shadow:var(--shadow);display:flex;flex-direction:column;justify-content:space-between}
+.story-scene[hidden]{display:none!important}
+.story-scene{animation:storySceneIn .28s ease both}
+@keyframes storySceneIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.story-scene .scene-meta{display:flex;align-items:center;gap:11px;flex-wrap:wrap;color:#9B7C5F;font-size:11px;font-weight:850;letter-spacing:.12em;text-transform:uppercase}
+.story-scene .scene-meta .accent-bar{display:block;width:4px;height:30px;border-radius:2px;background:var(--sage)}
+.story-scene:nth-child(2) .accent-bar{background:var(--blue)}
+.story-scene:nth-child(3) .accent-bar{background:var(--apricot)}
+.story-scene h3{font-size:clamp(27px,2.8vw,37px);margin:15px 0 8px;letter-spacing:-.035em}
+.story-scene .story-subtitle{font-size:16px;font-weight:780;color:var(--blue);margin-bottom:22px}
+.story-prose{max-width:61ch}
+.story-prose p{color:#5D5650;font-size:15px;line-height:1.9;margin:0 0 14px;overflow-wrap:anywhere}
+.story-prose p:last-child{margin-bottom:0}
+.story-prose p.hello{font-weight:850;color:var(--brown)}
+.story-prose .story-points{padding:17px 18px;background:#F7F4EE;border-radius:15px;margin:13px 0 17px}
+.story-prose .story-points p{margin:0 0 9px}
+.story-prose .story-points p:last-child{margin:0}
+.story-prose .story-motto{padding:10px 0;font-family:Georgia,serif;font-size:25px;color:var(--blue);font-weight:700}
+.story-route-prompt{margin-top:20px;padding:17px 18px;background:#F7F4EE;border-radius:15px;border:1px solid var(--line)}
+.story-route-prompt .prompt-title{font-size:14px;font-weight:800;margin-bottom:8px;color:var(--brown)}
+.story-route-prompt .prompt-note{font-size:13px;margin-bottom:15px}
+.story-route-actions{display:flex;flex-wrap:wrap;gap:9px}
+.story-route-actions .btn{font-size:13px;padding:9px 16px}
+.story-bottom{margin-top:28px;padding-top:19px;border-top:1px solid var(--line)}
+.story-bottom .counter{font-size:12px;color:#82786C;font-weight:750;letter-spacing:.07em}
+.story-bottom .actions{margin-top:12px;display:flex;align-items:center;gap:10px}
+.story-bottom .actions .btn{padding:11px 21px;font-size:14px}
+.story-bottom .actions .btn[disabled]{opacity:.4;cursor:not-allowed;box-shadow:none;transform:none}
+.story-bottom .actions .story-next{margin-left:auto}
+.story-shortcut{display:flex;gap:12px;justify-content:center;align-items:center;flex-wrap:wrap;margin:23px auto 12px}
+.story-shortcut button{background:none;border:0;color:var(--blue);font-size:13px;padding:7px 10px;text-decoration:underline;text-underline-offset:4px}
+.story-reader-hint{text-align:center;color:#8C8175;font-size:12px;max-width:600px;margin:12px auto}
+@media(max-width:950px){.story-board{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr)}.story-visual{min-height:530px}.story-visual .story-character{max-width:320px;max-height:400px}.story-step{padding:10px}.story-step .step-label strong{font-size:12px}}
+@media(max-width:760px){.story-board{grid-template-columns:1fr;gap:14px}.story-visual{min-height:260px;max-height:275px;padding:12px 12px 52px;border-radius:23px}.story-visual:before{width:240px;top:-10px;left:calc(50% - 120px)}.story-visual .story-character{height:220px;width:235px;object-fit:contain;object-position:center bottom}.story-visual .story-bubble{font-size:12px;padding:9px 13px;left:12px;right:12px;bottom:9px;max-width:450px;margin:auto}.story-storycard{border-radius:23px;padding:22px}.story-stepper{grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}.story-step{padding:9px 4px;justify-content:center;border-radius:12px}.story-step .step-label{display:none}.story-step .step-number{height:31px;width:31px}.story-v13 .section-intro{margin:20px auto}}
+@media(max-width:380px){.story-storycard{padding:18px}.story-route-actions .btn{width:100%}.story-bottom .actions .btn{padding:10px 14px;font-size:12px}.story-v13 .section-intro h2{font-size:33px}.story-scene .story-subtitle{font-size:15px}}
+@media(prefers-reduced-motion:reduce){.story-scene{animation:none!important}.story-progress-fill{transition:none!important}}
+
+
+/* V1.4 — Work Me case portfolio. Existing V1.3 layout and animations remain untouched. */
+.work-jump{display:flex;flex-wrap:wrap;gap:9px;padding:20px 0 5px;border-bottom:1px solid var(--line)}
+.work-jump button{border:1px solid var(--line);background:#fff;border-radius:99px;padding:9px 15px;font-size:12px;font-weight:750;color:var(--blue)}
+.work-jump button:hover{border-color:var(--blue);background:var(--bluewash)}
+.work-block{margin:65px 0 0;scroll-margin-top:22px}
+.work-kicker{color:var(--blue);font-size:11px;font-weight:850;letter-spacing:.14em;text-transform:uppercase}
+.work-section-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.75fr);gap:35px;align-items:end;margin:10px 0 26px}
+.work-section-head h3{font-size:clamp(29px,3.6vw,45px);margin:0 0 12px;max-width:700px}
+.work-section-head p{font-size:14px;line-height:1.85;max-width:60ch}
+.work-strengths{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.strength-card,.ai-grid article{background:white;border:1px solid var(--line);border-radius:22px;padding:26px;min-width:0}
+.strength-no,.ai-grid article>span{font-size:11px;font-weight:850;letter-spacing:.11em;color:var(--blue)}
+.strength-card h4,.ai-grid h4{font-size:21px;line-height:1.3;letter-spacing:-.02em;margin:14px 0 8px;overflow-wrap:anywhere}
+.strength-card p,.ai-grid p{font-size:13px;line-height:1.85}
+.strength-card .strength-zh{font-weight:750;color:var(--blue);margin-bottom:9px}
+.project-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;align-items:stretch}
+.project-tile{display:flex;flex-direction:column;gap:14px;align-items:stretch;min-width:0;text-align:left;background:white;border:1.5px solid var(--line);border-radius:23px;padding:23px;color:var(--brown);transition:border-color .2s,transform .2s,box-shadow .2s;min-height:375px}
+.project-tile:hover{border-color:#a6bad0;box-shadow:0 12px 30px rgba(53,92,138,.06);transform:translateY(-3px)}
+.project-tile.is-selected{border-color:var(--blue);box-shadow:0 12px 24px rgba(53,92,138,.10)}
+.project-tile strong{font-size:22px;line-height:1.35;letter-spacing:-.025em}
+.project-meta{color:var(--blue);font-size:10px;font-weight:800;letter-spacing:.09em;line-height:1.55}
+.project-summary{color:var(--muted);font-size:13px;line-height:1.8}
+.project-metrics{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.project-metrics>span{background:var(--bluewash);border-radius:12px;padding:10px;min-width:0}
+.project-metrics b{display:block;color:var(--blue);font-size:clamp(20px,2vw,27px);font-weight:900;letter-spacing:-.04em}
+.project-metrics small{display:block;color:#566A7C;font-size:10px;line-height:1.4}
+.project-disclaimer{color:#7F766F;font-size:10px;font-weight:500;letter-spacing:0}
+.project-illustration{display:flex;justify-content:space-between;align-items:center;gap:4px;padding:13px 6px;border-radius:13px;background:var(--bluewash);color:var(--blue);margin-top:auto;font-size:10px;line-height:1.2;font-weight:800}
+.project-illustration>span{text-align:center;flex:1}.project-illustration i{font-style:normal;flex:none}
+.project-open{color:var(--blue);font-weight:850;font-size:12px;margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:8px;border-top:1px solid var(--line);padding-top:15px}
+.case-hint{font-size:12px;text-align:center;color:#8B8177;margin:19px 0 0}
+.work-case{margin-top:20px;padding:clamp(23px,3.5vw,42px);background:#fff;border:1px solid #C8D6E5;border-radius:27px;box-shadow:0 17px 45px rgba(53,92,138,.06);scroll-margin-top:24px}
+.work-case[hidden]{display:none!important}
+.case-top{display:flex;align-items:flex-start;justify-content:space-between;gap:17px;border-bottom:1px solid var(--line);padding-bottom:22px;margin-bottom:24px}
+.case-top h4{font-size:clamp(23px,3vw,34px);letter-spacing:-.04em;line-height:1.24;margin:9px 0 10px}
+.case-top p{font-size:13px}
+.case-close{background:var(--ivory);border:1px solid var(--line);border-radius:50px;padding:8px 14px;font-size:12px;color:var(--brown);font-weight:750;flex:none}
+.case-close:hover{background:var(--bluewash)}
+.case-columns{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.case-section{padding:19px 21px;border-radius:16px;background:#FAF8F4;margin-bottom:16px;min-width:0}
+.case-columns .case-section{margin-bottom:0}
+.case-label{display:block;font-size:11px;font-weight:850;letter-spacing:.1em;color:var(--blue);margin-bottom:10px}
+.case-section p,.case-foot p,.results-intro{font-size:14px;line-height:1.9;color:#5E5851}
+.case-section h5{font-size:18px;line-height:1.35;letter-spacing:-.025em;margin:0 0 9px}
+.case-results{background:var(--bluewash);border-radius:20px;padding:25px;margin:18px 0}
+.result-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:17px 0 12px}
+.result-grid>div{padding:20px;background:#fff;border-radius:15px}
+.result-grid strong{display:block;font-size:clamp(30px,4vw,45px);color:var(--blue);font-weight:900;line-height:1.15;letter-spacing:-.05em;margin-bottom:10px}
+.result-grid span{font-size:12px;line-height:1.65;color:#536475}
+.results-caution,.evidence-note,.flow-caption{font-size:12px!important;line-height:1.8;color:#796F66!important}
+.results-caution{margin-top:9px}
+.case-foot{margin-top:22px;padding-top:17px;border-top:1px solid var(--line)}
+.evidence-note{margin-top:10px}
+.ebook-timeline{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;list-style:none;padding:0;margin:25px 0}
+.ebook-timeline li{position:relative;background:var(--bluewash);border-top:4px solid var(--blue);padding:21px 18px;border-radius:13px;min-width:0}
+.ebook-timeline li>span{font-size:11px;font-weight:850;color:var(--blue);letter-spacing:.06em}
+.ebook-timeline li h5{font-size:18px;letter-spacing:-.035em;margin:12px 0}
+.ebook-timeline li p{font-size:12px;line-height:1.85}
+.case-outcome{background:#EEF2F7}
+.process-flow-demo{background:var(--bluewash);border-radius:21px;padding:23px;margin:22px 0}
+.flow-toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:19px}
+.flow-toolbar>strong{color:var(--blue);font-size:17px}
+.flow-modes{display:flex;gap:4px;background:#fff;padding:5px;border:1px solid #DCE4EB;border-radius:99px}
+.flow-modes button{padding:8px 14px;border:0;border-radius:99px;background:transparent;color:#6B7A88;font-size:12px;font-weight:800}
+.flow-modes button[aria-pressed="true"]{background:var(--blue);color:white}
+.flow-state{display:flex;flex-direction:column;align-items:center;gap:6px}
+.flow-state[hidden]{display:none!important}
+.flow-state>div{width:100%;max-width:440px;border-radius:13px;text-align:center;background:white;border:1px solid #DDE5ED;padding:12px 18px;color:var(--brown);font-size:13px;font-weight:750}
+.flow-state>span{font-size:17px;color:var(--blue)}
+.flow-caption{text-align:center;margin:15px auto 0}
+.method-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px}
+.method-grid article{min-width:0;position:relative;padding:24px 18px 25px;border-radius:20px;background:#fff;border:1px solid var(--line)}
+.method-grid article>span{font-size:11px;letter-spacing:.07em;color:var(--blue);font-weight:850}
+.method-grid h4{font-size:20px;margin:15px 0 12px}
+.method-grid p{font-size:13px;line-height:1.8}
+.ai-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
+.work-reflection{margin-top:17px;border-radius:20px;padding:24px 30px;background:#EAF0E9;border-left:4px solid var(--sage)}
+.work-reflection p{font-size:15px;max-width:85ch;margin-top:10px;color:#525E52}
+.work-outro{margin-top:65px;padding:35px;border:1px solid var(--line);border-radius:29px;background:#fff}
+.work-outro h3{font-size:clamp(25px,3.2vw,35px);margin:11px 0}
+.work-outro p{font-size:14px}
+.work-outro .actions{margin-top:20px}
+@media(max-width:1030px){.project-grid{grid-template-columns:1fr 1fr}.project-tile{min-height:0}.project-tile:last-child{grid-column:span 2}.ebook-timeline{grid-template-columns:repeat(2,minmax(0,1fr))}.method-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:750px){.work-section-head{grid-template-columns:1fr;gap:5px}.work-strengths,.ai-grid{grid-template-columns:1fr}.project-grid{grid-template-columns:1fr}.project-tile:last-child{grid-column:auto}.project-tile{padding:22px}.case-columns{grid-template-columns:1fr}.ebook-timeline{grid-template-columns:1fr}.case-top{flex-direction:column}.case-close{align-self:flex-end}.work-block{margin-top:48px}}
+@media(max-width:430px){.work-jump{gap:6px}.work-jump button{font-size:11px;padding:8px 10px}.work-case{padding:18px;border-radius:19px}.result-grid{grid-template-columns:1fr}.method-grid{grid-template-columns:1fr}.case-section{padding:16px}.work-outro{padding:23px}.flow-toolbar{align-items:stretch}.flow-modes{width:max-content;max-width:100%}.project-metrics b{font-size:25px}}
+@media(prefers-reduced-motion:reduce){.project-tile{transition:none!important}}
+
+
+/* V1.5 — Compact Life Me design. Uses only the existing V1.4 avatar assets. */
+.life-accent{color:#95663F}
+.life-head .life-intro-text{font-size:16px;max-width:43ch;line-height:1.9;margin-top:10px}
+.life-jump{display:flex;gap:9px;flex-wrap:wrap;margin-top:20px;padding-bottom:17px;border-bottom:1px solid var(--line)}
+.life-jump button{border:1px solid #E7D4C2;background:#FFFDF9;color:#865E3E;font-size:12px;font-weight:750;border-radius:99px;padding:9px 15px}
+.life-jump button:hover{background:#F9ECDD}
+.life-block{margin:47px 0 0;scroll-margin-top:22px}
+.life-kicker{font-size:11px;letter-spacing:.15em;font-weight:850;color:#986941}
+.life-section-head{display:flex;justify-content:space-between;align-items:end;gap:18px;margin:8px 0 22px}
+.life-section-head h3{font-size:clamp(27px,3.6vw,42px);margin-bottom:10px}
+.life-section-head p{font-size:14px;max-width:61ch;line-height:1.85}
+.life-note-inline{background:#F5EADC;padding:9px 13px;border-radius:30px;font-size:11px;color:#826347;white-space:nowrap;align-self:start}
+.life-photo-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
+.life-photo-card{display:flex;flex-direction:column;min-width:0;overflow:hidden;border:1px solid #E6D6C5;background:#fff;border-radius:21px;padding:0;text-align:left;transition:transform .2s,border-color .2s,box-shadow .2s}
+.life-photo-card:hover,.life-visual-card:hover{transform:translateY(-3px);border-color:#BD946F;box-shadow:0 9px 20px rgba(83,59,40,.09)}
+.life-placeholder-art{aspect-ratio:1.35;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;background:linear-gradient(145deg,#F8EEE2 0%,#EBD7C0 100%)}
+.life-photo-card:nth-child(2) .life-placeholder-art{background:linear-gradient(145deg,#E8DDD0 0%,#D4BDA7 100%)}
+.life-photo-card:nth-child(3) .life-placeholder-art{background:linear-gradient(145deg,#F1E6D9 0%,#D9C9B5 100%)}
+.life-placeholder-art:before{content:'';width:62%;aspect-ratio:1;border-radius:50%;border:1px solid rgba(255,255,255,.62);position:absolute}
+.life-placeholder-art:after{content:'+';font-weight:200;font-size:72px;line-height:1;color:rgba(135,97,62,.28);position:relative}
+.life-photo-info{display:flex;justify-content:space-between;gap:8px;align-items:center;padding:13px 14px}
+.life-photo-info strong{font-size:13px;color:var(--brown)}
+.life-photo-info small{font-size:10px;color:#93785F}
+.life-extra{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;align-items:center;margin:15px 0 0}
+.life-extra p{font-size:12px;max-width:65ch}
+.life-link-placeholder{display:inline-flex;align-items:center;gap:7px;border:1px dashed #C5A789;color:#826347;border-radius:99px;padding:8px 13px;background:#FFFDF9;font-size:12px;font-weight:750}
+.life-creative-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:18px;align-items:stretch}
+.life-feature{background:white;border:1px solid #E8DACB;border-radius:24px;padding:25px;min-width:0}
+.life-feature h4{font-size:22px;letter-spacing:-.03em;line-height:1.3;margin:7px 0 10px}
+.life-feature p{font-size:13px;line-height:1.85}
+.life-avatar-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin-top:18px}
+.life-avatar{display:flex;flex-direction:column;align-items:center;justify-content:space-between;min-width:0;border-radius:15px;background:linear-gradient(160deg,#F9F4EC,#EFE4D5);padding:8px 6px 11px;overflow:hidden}
+.life-avatar img{display:block;width:100%;height:145px;object-fit:contain;filter:drop-shadow(0 7px 8px rgba(85,59,39,.10))}
+.life-avatar span{text-align:center;font-weight:800;font-size:11px;color:#6F5C4D}
+.life-creative-side{display:flex;flex-direction:column;gap:15px;min-width:0}
+.life-small-title{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.life-small-title h4{font-size:18px;line-height:1.4;margin:0}
+.life-small-title span{font-size:10px;color:#A38366;white-space:nowrap}
+.life-small-card{padding:20px 22px;background:white;border:1px solid #E8DACB;border-radius:23px;min-width:0}
+.life-small-card p{font-size:13px;line-height:1.8;margin-top:8px}
+.life-social-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:14px}
+.life-visual-card{min-width:0;aspect-ratio:1;border:1px solid #E7D6C4;border-radius:13px;background:linear-gradient(145deg,#F4E6D6,#E5D2BE);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px;color:#937456;transition:transform .2s,border-color .2s,box-shadow .2s}
+.life-visual-card:nth-child(2){background:linear-gradient(145deg,#E9DED1,#E4CBB4)}
+.life-visual-card:nth-child(3){background:linear-gradient(145deg,#F4EBDD,#DDCAB8)}
+.life-visual-card span{font-size:25px;font-weight:200;line-height:1}
+.life-visual-card small{font-size:10px;font-weight:700}
+.life-closing{margin:45px 0 0;padding:28px 34px;border:1px solid #E6D6C4;border-radius:25px;background:linear-gradient(115deg,#F3E4D3,#FAF4EC);display:flex;gap:24px;align-items:center;justify-content:space-between}
+.life-closing h3{font-size:clamp(23px,3.3vw,31px);margin:6px 0 9px}
+.life-closing p{font-size:13px;max-width:59ch}
+.life-closing .actions{margin:0;flex-shrink:0}
+.life-preview{position:fixed;inset:0;max-width:min(520px,calc(100vw - 28px));max-height:min(650px,calc(100vh - 30px));padding:0;border:1px solid #DFCCB7;border-radius:25px;background:#FFFDF9;box-shadow:0 24px 80px rgba(37,29,21,.23);color:var(--brown);overflow:auto}
+.life-preview::backdrop{background:rgba(40,35,30,.54)}
+.life-preview-body{padding:25px}
+.life-preview-top{display:flex;gap:10px;justify-content:space-between;align-items:start}
+.life-preview h3{font-size:24px;margin-top:5px}
+.life-preview-close{border:1px solid #E9DCCC;background:white;border-radius:50%;width:36px;height:36px;font-size:25px;line-height:1;flex-shrink:0;color:var(--brown)}
+.life-preview-blank{height:240px;border-radius:16px;margin:20px 0 15px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;background:radial-gradient(circle at 50% 44%,#FDF9F2,#EAD8C3)}
+.life-preview-blank span{font-size:53px;color:#B89574;line-height:1}
+.life-preview-blank small{font-size:12px;color:#86684F}
+.life-preview-description{font-size:13px;line-height:1.8}
+.life-preview-actions{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:19px}
+.life-preview-actions button{border:1px solid #DFCDBA;color:#835F3E;background:white;padding:9px 15px;border-radius:99px;font-size:12px;font-weight:800}
+.life-preview-actions button:hover{background:#F8EBDC}
+.life-preview-counter{font-size:12px;color:#8F745D}
+@media(max-width:890px){.life-creative-grid{grid-template-columns:1fr}.life-avatar img{height:155px}.life-creative-side{display:grid;grid-template-columns:1fr 1fr}.life-creative-side .life-small-card{height:100%}.life-section-head{align-items:start;flex-direction:column}.life-note-inline{align-self:start}}
+@media(max-width:680px){.life-block{margin-top:39px}.life-photo-grid{gap:8px}.life-photo-card{border-radius:13px}.life-photo-info{padding:10px 9px;flex-direction:column;align-items:start;gap:1px}.life-photo-info strong{font-size:11px}.life-photo-info small{font-size:9px}.life-placeholder-art:after{font-size:53px}.life-feature{padding:18px}.life-avatar img{height:130px}.life-creative-side{grid-template-columns:1fr}.life-small-card{padding:18px}.life-closing{flex-direction:column;align-items:start;padding:24px;gap:14px}.life-closing .actions{margin:0}.life-preview-body{padding:20px}.life-preview-blank{height:190px}}
+@media(max-width:680px){.life-photo-grid{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:76%;overflow-x:auto;overscroll-behavior-inline:contain;scroll-snap-type:x mandatory;padding-bottom:8px}.life-photo-card{scroll-snap-align:start}.life-photo-info{flex-direction:row;align-items:center}.life-photo-info strong{font-size:12px}.life-photo-info small{font-size:10px}}
+@media(max-width:380px){.life-jump button{padding:8px 10px;font-size:11px}.life-avatar img{height:100px}.life-avatar span{font-size:10px}.life-photo-info strong{font-size:10px}}
+@media(prefers-reduced-motion:reduce){.life-photo-card,.life-visual-card{transition:none!important}}
+
+
+/* V1.6 — Approved real photo and social works; original image aspect ratios retained. */
+.life-photo-media{display:block;aspect-ratio:3/4;overflow:hidden;background:#EDE3D8}
+.life-photo-media img{display:block;width:100%;height:100%;object-fit:contain;object-position:center;background:#EDE3D8}
+.life-photo-info{align-items:flex-start;flex-direction:column;gap:3px}
+.life-photo-info strong{font-size:14px}
+.life-photo-info small{font-size:11px}
+.life-series-note{color:#946741!important;font-size:12px!important;font-weight:760;margin-top:9px!important}
+.life-external-link,.life-preview-full{display:inline-flex;align-items:center;text-decoration:none;background:#95663F;color:#fff;border:1px solid #95663F;border-radius:99px;padding:8px 14px;font-size:12px;font-weight:800;line-height:1.5}
+.life-external-link:hover,.life-preview-full:hover{background:#794E30}
+.life-visual-card{position:relative;overflow:hidden;justify-content:space-between;gap:0;padding:5px 5px 6px;aspect-ratio:1;background:#F6F0E8}
+.life-visual-card img{display:block;max-width:100%;width:100%;min-height:0;flex:1;object-fit:contain;border-radius:8px}
+.life-visual-card small{display:block;font-size:9px;line-height:1.35;color:#694F3D;text-align:center;padding:6px 1px 0}
+.life-preview{max-width:min(760px,calc(100vw - 28px));max-height:min(94vh,980px)}
+.life-preview-frame{display:flex;align-items:center;justify-content:center;margin:14px 0;min-height:100px;max-height:min(58vh,600px);overflow:hidden;border-radius:16px;background:#F5EEE7}
+.life-preview-frame img{display:block;max-height:min(58vh,600px);width:auto;max-width:100%;height:auto;object-fit:contain}
+.life-preview-english{font-style:italic;font-size:12px;color:#996F4A;margin-top:5px}
+.life-preview-description{font-size:13px;line-height:1.9}
+.life-preview-notice{margin-top:9px!important;padding:8px 12px;border-radius:10px;background:#F4EEE7;font-size:12px;line-height:1.65;color:#776352}
+.life-preview-full{margin-top:13px;background:transparent;border-color:#BD9975;color:#795839}
+.life-preview-full:hover{background:#F8EBDC;color:#795839}
+@media(max-width:680px){.life-photo-info{flex-direction:column;align-items:flex-start}.life-photo-grid{grid-auto-columns:73%}.life-photo-info strong{font-size:12px}.life-photo-info small{font-size:10px}.life-preview{max-height:95vh}.life-preview-frame,.life-preview-frame img{max-height:50vh}.life-visual-card small{font-size:9px}}
+
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">跳到主要內容</a>
+<header class="site-header">
+  <a href="#welcome" class="brand" data-page="welcome" aria-label="回到首頁">Kevin<span class="dot">.</span></a>
+  <nav class="topnav" aria-label="主要導覽">
+    <button class="nav-btn" type="button" data-page="story">Story</button>
+    <button class="nav-btn" type="button" data-page="work">Work</button>
+    <button class="nav-btn" type="button" data-page="life">Life</button>
+    <button class="nav-cta" type="button" data-page="choose">Explore ↗</button>
+  </nav>
+</header>
+<main id="main" class="shell" tabindex="-1">
+<section id="welcome" class="stage active" aria-labelledby="welcome-title">
+  <div class="hero">
+    <div class="hero-copy">
+      <div class="eyebrow">HELLO, I'M KEVIN · A LITTLE DIGITAL WORLD</div>
+      <h1 id="welcome-title">Stay Curious.<br><em>Keep Exploring.</em></h1>
+      <p class="lead">工作與生活，是我探索世界的兩種方式。<br>歡迎來到我的小小數位世界，跟著 MINI ME，一起認識不同面向的我。</p>
+      <div class="hero-actions"><button class="btn" data-page="story">開始探索　↗</button><button class="btn secondary" data-page="choose">直接選擇路線</button></div>
+    </div>
+    <div class="artboard"><span class="outline" aria-hidden="true">✳</span><span class="spark" aria-hidden="true">✦ &nbsp; ✧</span><div class="wave-actor" id="wave-actor" role="img" aria-label="Explorer Me：戴圓框眼鏡、揹著背包並開心揮手的 3D Q版 Kevin"><img class="char-img" src="assets/explorer.png" alt=""/><img class="wave-gif" id="explorer-wave" src="assets/explorer-wave.gif" alt="" aria-hidden="true"/></div><div class="animation-controls" aria-label="角色動畫控制"><button id="replay-wave" type="button">↻ 重播揮手</button><button id="skip-wave" type="button">跳過動畫</button></div><div class="bubble" role="status">Hey！歡迎來到我的小小世界 👋</div></div>
+  </div>
+  <div class="scroll-note">✦ &nbsp; CURIOSITY IS THE START OF EVERYTHING &nbsp; ✦</div>
+  <div class="feature-strip"><span>✧ CURIOUS</span><span>✧ CREATIVE</span><span>✧ THOUGHTFUL</span><span>✧ ALWAYS EXPLORING</span></div>
+</section>
+<section id="story" class="stage story-v13" aria-labelledby="story-title">
+  <div class="story-topline">
+    <button class="backlink" type="button" data-page="welcome">← 返回首頁</button>
+    <button class="story-fast" type="button" data-page="work">直接探索作品 →</button>
+  </div>
+  <div class="section-intro">
+    <div class="eyebrow">CHAPTER 01 · THE STORY OF KEVIN</div>
+    <h2 id="story-title">The Story of Kevin.</h2>
+    <p>Stay Curious. Keep Exploring. — 每一次嘗試，都是認識自己的過程。</p>
+  </div>
+  <nav class="story-stepper" aria-label="選擇故事章節">
+    <button class="story-step" type="button" data-story-step="0" aria-current="step" aria-controls="story-scene-1"><span class="step-number">01</span><span class="step-label"><strong>從好奇開始</strong><small>Hello, I'm Kevin</small></span></button>
+    <button class="story-step" type="button" data-story-step="1" aria-controls="story-scene-2"><span class="step-number">02</span><span class="step-label"><strong>工作中的成長</strong><small>Learning Through Experience</small></span></button>
+    <button class="story-step" type="button" data-story-step="2" aria-controls="story-scene-3"><span class="step-number">03</span><span class="step-label"><strong>生活中的探索</strong><small>Beyond Work</small></span></button>
+    <button class="story-step" type="button" data-story-step="3" aria-controls="story-scene-4"><span class="step-number">04</span><span class="step-label"><strong>繼續向前</strong><small>Keep Exploring</small></span></button>
+  </nav>
+  <div class="story-progress-track" role="progressbar" aria-label="故事閱讀進度" aria-valuemin="1" aria-valuemax="4" aria-valuenow="1" id="story-progress"><div class="story-progress-fill" id="story-progress-fill"></div></div>
+  <div class="story-board" id="story-board">
+    <div class="story-visual" aria-label="Explorer Me 陪伴閱讀個人故事">
+      <span class="story-spark" aria-hidden="true">✦ ✧</span>
+      <img class="story-character" src="assets/explorer.png" alt="Explorer Me：戴著圓框眼鏡、穿著休閒服裝的 3D Q版 Kevin" loading="lazy" />
+      <div class="story-bubble" id="story-guide">Hey！一起從好奇開始，認識我的故事。</div>
+    </div>
+    <div class="story-storycard">
+      <div id="story-scenes">
+        <article class="story-scene" id="story-scene-1" aria-labelledby="story-scene-title-1">
+          <div class="scene-meta"><span class="accent-bar"></span> SCENE 01 / HELLO, I'M KEVIN</div>
+          <h3 id="story-scene-title-1">Hello, I'm Kevin.</h3>
+          <p class="story-subtitle">從好奇開始，慢慢找到自己的方向。</p>
+          <div class="story-prose">
+            <p class="hello">Hi～我是 Kevin。</p>
+            <p>我喜歡探索新事物，也習慣在過程中觀察、思考，慢慢認識自己。</p>
+            <p>遇到感興趣的事情，我通常會先試試看，再決定是否深入了解。對我來說，每一次嘗試都是新的經驗，也讓我更清楚自己喜歡什麼、想往哪裡前進。</p>
+          </div>
+        </article>
+        <article class="story-scene" id="story-scene-2" aria-labelledby="story-scene-title-2" hidden>
+          <div class="scene-meta"><span class="accent-bar"></span> SCENE 02 / LEARNING THROUGH EXPERIENCE</div>
+          <h3 id="story-scene-title-2">Learning Through Experience</h3>
+          <p class="story-subtitle">在工作中累積經驗，也發現自己的興趣。</p>
+          <div class="story-prose">
+            <p>畢業後，我進入華泰文化，展開第一份正式工作。</p>
+            <p>從商品資料、價格、庫存與訂單管理開始，逐漸接觸網路書店、電子書與數位教材，也開始學習整合不同部門的需求與工作流程。</p>
+            <p>隨著參與的工作越來越多，我發現自己不只在意任務是否完成，更喜歡從數據中找線索、理解使用者遇到的問題，再和團隊一起討論能實際執行的改善方式。</p>
+            <p>這些經驗不只累積了工作能力，也讓我逐漸找到感興趣的方向。</p>
+          </div>
+        </article>
+        <article class="story-scene" id="story-scene-3" aria-labelledby="story-scene-title-3" hidden>
+          <div class="scene-meta"><span class="accent-bar"></span> SCENE 03 / BEYOND WORK</div>
+          <h3 id="story-scene-title-3">Beyond Work</h3>
+          <p class="story-subtitle">工作以外，依然保持好奇。</p>
+          <div class="story-prose">
+            <p>生活中的我，喜歡用攝影記錄日常。</p>
+            <p>有時只是隨手拍下一個畫面，有時則會嘗試不同的 AI 工具、影音剪輯或創作方式。</p>
+            <p>我不一定會把每個興趣都發展成專長，但很享受從零開始接觸新事物的過程。</p>
+            <p>攝影讓我更留意身邊的細節，創作讓我嘗試不同的表達方式，而持續學習則帶來更多新的可能。</p>
+          </div>
+        </article>
+        <article class="story-scene" id="story-scene-4" aria-labelledby="story-scene-title-4" hidden>
+          <div class="scene-meta"><span class="accent-bar"></span> SCENE 04 / KEEP EXPLORING</div>
+          <h3 id="story-scene-title-4">Keep Exploring</h3>
+          <p class="story-subtitle">帶著累積的經驗，繼續向外探索。</p>
+          <div class="story-prose">
+            <p>過去的工作與生活，讓我逐漸認識自己的興趣，也累積了分析問題、整合需求、協調合作與推進執行的能力。</p>
+            <p>現在的我，希望帶著這些經驗，繼續接觸不同的產業、產品與團隊，學習新的事物，也創造實際的價值。</p>
+            <p>我相信，每一次探索都有它的意義。</p>
+            <p class="story-motto">Carpe Diem！</p>
+            <p>保持好奇，把握當下，在每一次嘗試中繼續成長。</p>
+            <div class="story-route-prompt">
+              <p class="prompt-title">Choose Your Path — 想先認識哪一面的我？</p>
+              <p class="prompt-note">工作與生活，是我持續探索的兩種方式。</p>
+              <div class="story-route-actions">
+                <button type="button" class="btn blue" data-page="work">Work Me｜工作的我</button>
+                <button type="button" class="btn peach" data-page="life">Life Me｜生活中的我</button>
+                <button type="button" class="btn secondary" data-page="choose">一起選擇探索方向 ↗</button>
+              </div>
+              <p class="prompt-note" style="margin:13px 0 0"><strong>Work Me｜工作的我：</strong>看看我如何從問題出發，透過分析、規劃與團隊合作，把想法逐步轉化為成果。</p>
+              <p class="prompt-note" style="margin:7px 0 0"><strong>Life Me｜生活中的我：</strong>一起探索那些讓我保持好奇的日常片段，從手機攝影到各種有趣的創作嘗試。</p>
+            </div>
+          </div>
+        </article>
+      </div>
+      <div class="story-bottom">
+        <div id="story-counter" class="counter" aria-live="polite" aria-atomic="true">STORY 01 / 04</div>
+        <div class="actions">
+          <button type="button" class="btn secondary" id="story-prev" disabled>← 上一幕</button>
+          <button type="button" class="btn" id="story-next">下一幕 →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="story-shortcut">
+    <button type="button" data-page="choose">跳過故事，選擇探索方向</button>
+    <button type="button" data-page="work">直接查看 Work Me</button>
+  </div>
+  <p class="story-reader-hint">可自由切換四個章節；故事不需要讀完，隨時都能前往 Work Me 或 Life Me。</p>
+</section>
+<section id="choose" class="stage" aria-labelledby="choose-title">
+  <div class="section-intro"><div class="eyebrow">CHAPTER 02 · CHOOSE YOUR PATH</div><h2 id="choose-title">Two sides.<br>One curious mind.</h2><p>你想先認識哪一面的我？選一條路開始，也可以隨時切換。</p></div>
+  <div class="path-grid">
+    <button class="path-card" data-page="work" id="work-choice"><span class="visited">✓ 已探索</span><div class="head"><small>01 / WORK ME</small><h3>工作的我</h3><p>策略思考、數位營運、分析與協作。一起看看我如何把想法化為行動。</p></div><img src="assets/work.png" alt="" loading="lazy"/><span class="arrow" aria-hidden="true">↗</span></button>
+    <button class="path-card life" data-page="life" id="life-choice"><span class="visited">✓ 已探索</span><div class="head"><small>02 / LIFE ME</small><h3>生活中的我</h3><p>手機攝影、日常觀察與創作。一起發現生活中有意思的小細節。</p></div><img src="assets/life.png" alt="" loading="lazy"/><span class="arrow" aria-hidden="true">↗</span></button>
+  </div>
+  <div class="actions" style="justify-content:center"><button class="btn secondary" data-page="story">← 返回我的故事</button><button class="btn secondary" data-page="ending">跳至旅程終點</button></div>
+</section>
+<section id="work" class="stage" aria-labelledby="work-title">
+  <div class="chapter-top"><button class="backlink" data-page="choose">← 返回探索路線</button><div class="status">WORK JOURNEY · 01/02</div></div>
+  <div class="chapter-head"><div><div class="eyebrow blue">WORK ME · IDEAS INTO ACTION</div><h2 id="work-title">Think clearly.<br>Make it happen.</h2><p>我喜歡從資料與使用者的角度理解問題，和不同夥伴一起找到能實際推進的做法。</p><div class="chapter-hello">💬 工作模式啟動！來看看我如何把想法變成行動。</div></div><div class="mini-visual chapter-visual">
+  <div class="chapter-actor" id="work-actor" role="img" aria-label="Work Me：拿著筆電並伸手介紹作品的 3D Q版 Kevin">
+    <img class="chapter-still" src="assets/work.png" alt="" loading="lazy" />
+    <img class="chapter-gif" id="work-gif" src="assets/work-intro.gif" alt="" aria-hidden="true" />
+  </div>
+  <div class="chapter-animation-controls" aria-label="Work Me 動畫控制">
+    <button type="button" id="work-replay">↻ 重播介紹</button><button type="button" id="work-skip">跳過動畫</button>
+  </div>
+</div></div>
+  <nav class="work-jump" aria-label="Work Me 章節導覽">
+    <button type="button" data-work-scroll="work-journey">My Journey</button>
+    <button type="button" data-work-scroll="work-projects">Selected Projects</button>
+    <button type="button" data-work-scroll="work-method">How I Work</button>
+    <button type="button" data-work-scroll="work-ai">AI in My Workflow</button>
+  </nav>
+  <section class="work-block" id="work-journey" aria-labelledby="work-journey-title">
+    <div class="work-kicker">01 / MY JOURNEY</div>
+    <div class="work-section-head">
+      <div><h3 id="work-journey-title">從營運現場，找到自己的專業方向。</h3></div>
+      <p>在華泰文化行銷管理組任職期間，我的工作逐漸從日常營運延伸到網路書店、電子書及數位產品相關業務。比起單純完成眼前任務，我更重視理解問題、整理資訊，以及與團隊合作找到可執行的解決方法。</p>
+    </div>
+    <div class="work-strengths">
+      <article class="strength-card"><span class="strength-no">01 / STRATEGY</span><h4>Data-Driven Marketing</h4><p class="strength-zh">數據分析 × 行銷策略</p><p>從銷售資料觀察消費行為，參與活動規劃與成效追蹤。</p></article>
+      <article class="strength-card"><span class="strength-no">02 / PRODUCT</span><h4>Digital Product Operations</h4><p class="strength-zh">數位產品 × 需求整合</p><p>參與中文電子書從 0 到 1 的建置，並串接實際營運流程。</p></article>
+      <article class="strength-card"><span class="strength-no">03 / PROCESS</span><h4>Process Improvement</h4><p class="strength-zh">流程改善 × 跨部門協作</p><p>整理作業情境、協助測試自動化，並建立標準作業流程。</p></article>
+    </div>
+  </section>
+
+  <section class="work-block" id="work-projects" aria-labelledby="work-projects-title">
+    <div class="work-kicker">02 / SELECTED PROJECTS</div>
+    <div class="work-section-head">
+      <div><h3 id="work-projects-title">Selected Projects.</h3><p>三個真實專案，三種從問題走向行動的方式。</p></div>
+      <p>先從卡片看重點，再選擇想深入了解的案例。每個專案都會區分我的實際工作與團隊共同成果。</p>
+    </div>
+    <div class="project-grid" role="group" aria-label="選擇代表專案">
+      <button class="project-tile" type="button" data-project="eshop" aria-controls="case-eshop" aria-expanded="false">
+        <span class="project-meta">PROJECT 01 / MARKETING</span>
+        <strong>eShop 行銷策略與成效優化</strong>
+        <span class="project-summary">從銷售與消費行為分析出發，參與促銷策略與素材執行。</span>
+        <span class="project-metrics"><span><b>+5~8%</b><small>優惠券與運費優惠訂單占比</small></span><span><b>+2%</b><small>舊客轉換率</small></span></span>
+        <span class="project-meta project-disclaimer">單次代表活動 · 相較同期相對成長，非每次固定績效</span>
+        <span class="project-open">探索完整案例 <span aria-hidden="true">↗</span></span>
+      </button>
+      <button class="project-tile" type="button" data-project="ebook" aria-controls="case-ebook" aria-expanded="false">
+        <span class="project-meta">PROJECT 02 / DIGITAL PRODUCT</span>
+        <strong>中文電子書建置與內部導入</strong>
+        <span class="project-summary">深度參與從 0 到 1 的建置、流程確立與業務教育訓練。</span>
+        <span class="project-illustration" aria-hidden="true"><span>產品建置</span><i>→</i><span>流程確立</span><i>→</i><span>內部導入</span></span>
+        <span class="project-meta">產品營運 · 需求整合 · AI 教學應用</span>
+        <span class="project-open">探索完整案例 <span aria-hidden="true">↗</span></span>
+      </button>
+      <button class="project-tile" type="button" data-project="process" aria-controls="case-process" aria-expanded="false">
+        <span class="project-meta">PROJECT 03 / PROCESS IMPROVEMENT</span>
+        <strong>序號自動派發與營運標準化</strong>
+        <span class="project-summary">將寄送情境整理為作業需求，協助測試並獨立建立 SOP。</span>
+        <span class="project-illustration" aria-hidden="true"><span>人工作業</span><i>→</i><span>自動派發</span></span>
+        <span class="project-meta">流程分析 · 測試驗證 · SOP 建立</span>
+        <span class="project-open">探索完整案例 <span aria-hidden="true">↗</span></span>
+      </button>
+    </div>
+    <div class="case-hint" id="case-hint" aria-live="polite">點選上方專案卡片，即可展開完整案例。</div>
+    <div class="work-case" id="case-eshop" data-case="eshop" hidden tabindex="-1">
+      <div class="case-top"><div><span class="work-kicker">PROJECT 01 / CASE STUDY</span><h4>eShop 電商行銷策略與成效優化</h4><p>Data-Driven Marketing · Campaign Planning</p></div><button type="button" class="case-close" data-close-case>收合案例 ×</button></div>
+      <div class="case-columns">
+        <article class="case-section"><span class="case-label">BACKGROUND / 專案背景</span><p>為提高網路書店訂單量及商城能見度，透過銷售數據與消費行為分析，規劃行銷活動及促銷機制。</p></article>
+        <article class="case-section"><span class="case-label">MY CONTRIBUTION / 我的參與</span><p>從定期銷售分析中觀察消費者行為，參與活動策略與促銷機制規劃，並負責 EDM、APP 推播、首頁視覺及活動文案等行銷素材製作。</p></article>
+      </div>
+      <div class="case-results"><span class="case-label">RESULTS / 單次代表活動成果</span><p class="results-intro">在其中一次參與規劃與執行的行銷活動中，活動成效追蹤顯示：</p>
+        <div class="result-grid"><div><strong>約 5~8%</strong><span>優惠券與運費優惠訂單占比<br>相較同期的相對成長幅度</span></div><div><strong>約 2%</strong><span>舊客轉換率<br>相較同期的相對成長幅度</span></div></div>
+        <p class="results-caution">上述為該次活動的代表性成果，並非每次活動的固定成效，也不是百分點增幅。成果來自活動策略、行銷執行及團隊共同協作。</p>
+      </div>
+      <div class="case-foot"><span class="case-label">KEY SKILLS</span><p>銷售分析／行銷活動規劃／行銷素材設計／成效追蹤</p></div>
+    </div>
+    <div class="work-case" id="case-ebook" data-case="ebook" hidden tabindex="-1">
+      <div class="case-top"><div><span class="work-kicker">PROJECT 02 / CASE STUDY</span><h4>電子書數位產品建置、營運流程與內部導入</h4><p>Digital Product Development &amp; Operations</p></div><button type="button" class="case-close" data-close-case>收合案例 ×</button></div>
+      <div class="case-section"><span class="case-label">BACKGROUND / 專案背景</span><p>隨著數位教材業務發展，公司逐步建立中文電子書產品服務。除了產品功能建置，也需要確立從贈書、銷售到發送的整體營運流程，讓相關部門與業務人員能夠順利使用及推廣產品。</p></div>
+      <div class="case-section"><span class="case-label">MY ROLE / 我的角色與參與</span><p>我主要負責原文與中文電子書營運，並深度參與中文電子書產品從 0 到 1 的建置歷程。由於參與中文電子書多數建置及營運環節，除了產品需求整理與測試協調，也負責確立相關作業流程，並協助內部業務人員熟悉產品操作。</p></div>
+      <ol class="ebook-timeline">
+        <li><span>01 · PRODUCT</span><h5>產品建置與需求整合</h5><p>參與市場競品研究、產品功能需求整理、測試協調、合作夥伴對接及網路商城專頁規劃，協助中文電子書產品逐步完成建置。</p></li>
+        <li><span>02 · OPERATIONS</span><h5>中文電子書營運流程確立</h5><p>針對中文電子書的贈書、銷售及發送等業務情境，整理並確立整體作業流程，讓不同環節具備明確的操作方式與執行依據。</p></li>
+        <li><span>03 · ENABLEMENT</span><h5>內部業務教育訓練</h5><p>基於對中文電子書建置及營運流程的熟悉程度，曾準備並進行一場小型內部教育訓練，協助公司業務人員理解中文電子書的作業流程及系統操作畫面。</p></li>
+        <li><span>04 · AI APPLICATION</span><h5>AI 輔助教學設計</h5><p>為了讓教育訓練不只是單向講解，我嘗試運用 AI 製作小型互動式網站，作為中文電子書教育訓練的輔助工具，希望透過互動方式加強學習連結與參與者的專注力。</p></li>
+      </ol>
+      <div class="case-section case-outcome"><span class="case-label">OUTCOME / 專案成果</span><p>深度參與中文電子書產品從建置到實際營運的過程，確立從贈書、銷售到發送的相關作業流程，並透過內部教育訓練協助業務人員熟悉產品操作。同時，將 AI 工具應用於實際教育訓練情境，嘗試以互動式網站輔助資訊傳達，探索更具參與感的學習方式。</p></div>
+      <div class="case-foot"><span class="case-label">KEY SKILLS</span><p>數位產品營運／需求整合／流程規劃／跨部門協作／教育訓練／AI 工具應用</p></div>
+    </div>
+    <div class="work-case" id="case-process" data-case="process" hidden tabindex="-1">
+      <div class="case-top"><div><span class="work-kicker">PROJECT 03 / CASE STUDY</span><h4>數位商品序號自動派發與營運標準化</h4><p>Process Improvement &amp; Operations</p></div><button type="button" class="case-close" data-close-case>收合案例 ×</button></div>
+      <div class="case-section"><span class="case-label">BACKGROUND / 專案背景</span><p>數位商品的訂單履約涉及序號備貨、發送及售後支援等環節。原先部分作業需要人工處理，隨著營運需求增加，公司逐步推動序號自動派發流程，以減少一般寄送情境中的人工操作需求。</p></div>
+      <div class="case-section"><span class="case-label">MY ROLE / 我的角色與參與</span><p>由於熟悉電子書的訂單履約與實際營運流程，我參與了數位商品序號自動派發的相關規劃與測試工作，協助將營運需求轉化為可執行的作業規則。</p></div>
+      <div class="process-flow-demo" aria-label="改善前後流程比較">
+        <div class="flow-toolbar"><strong>From Manual to Automated.</strong><div class="flow-modes" role="group" aria-label="切換改善前後流程"><button type="button" data-flow="before" aria-pressed="false">改善前</button><button type="button" data-flow="after" aria-pressed="true">改善後</button></div></div>
+        <div class="flow-state" data-flow-panel="before" hidden><div>接收數位商品訂單</div><span aria-hidden="true">↓</span><div>人工處理序號寄送</div><span aria-hidden="true">↓</span><div>確認履約與後續支援</div></div>
+        <div class="flow-state" data-flow-panel="after"><div>接收數位商品訂單</div><span aria-hidden="true">↓</span><div>依設定流程自動派發序號</div><span aria-hidden="true">↓</span><div>客製化需求由人工處理</div></div>
+        <p class="flow-caption">此為簡化的流程示意，並非原始系統流程圖。</p>
+      </div>
+      <div class="case-columns process-roles">
+        <article class="case-section"><span class="case-label">01 · REQUIREMENTS</span><h5>作業需求與情境整理</h5><p>彙整數位商品序號寄送情境、例外處理方式及通知信件需求，協助釐清不同訂單情況的作業方式。</p></article>
+        <article class="case-section"><span class="case-label">02 · VALIDATION</span><h5>自動派發測試與驗證</h5><p>協助公司測試序號自動派發流程，從實際營運角度確認寄送情境及相關作業需求。</p></article>
+        <article class="case-section"><span class="case-label">03 · OPERATIONS</span><h5>備貨與訂單履約管理</h5><p>依據歷史銷量、業務預估及實際訂單進行序號備貨規劃，並管理商品履約與售後支援相關事項。</p></article>
+        <article class="case-section"><span class="case-label">04 · DOCUMENTATION</span><h5>標準作業流程建立</h5><p>獨立建立涵蓋商品建檔、製單、備貨、寄送及 FAQ 的完整 SOP，讓日常作業具備一致的執行依據。</p></article>
+      </div>
+      <div class="case-section case-outcome"><span class="case-label">OUTCOME / 專案成果</span><p>透過團隊共同推進的流程改善，公司完成數位商品序號自動派發，使一般寄送作業能由系統處理，人工寄送則限縮至客製化需求。此外，我獨立建立的營運 SOP，也為商品履約及後續作業提供標準化的流程依據。</p></div>
+      <div class="case-foot"><span class="case-label">KEY SKILLS</span><p>流程分析／需求整合／測試驗證／營運規劃／SOP 建立／跨部門協作</p></div>
+    </div>
+  </section>
+
+  <section class="work-block" id="work-method" aria-labelledby="work-method-title">
+    <div class="work-kicker">03 / HOW I WORK</div>
+    <div class="work-section-head"><div><h3 id="work-method-title">How I Work.</h3><p>我如何理解問題，並把事情向前推進？</p></div><p>工作中，我重視資料與使用情境的線索，也習慣和不同角色討論，讓需求與實際行動能夠銜接。</p></div>
+    <div class="method-grid">
+      <article><span>01 / OBSERVE</span><h4>觀察與分析</h4><p>從銷售數據、營運流程及實際使用情境中整理資訊，尋找值得釐清的問題。</p></article>
+      <article><span>02 / UNDERSTAND</span><h4>理解需求</h4><p>從不同角色的需求出發，思考問題如何影響使用者、營運及協作流程。</p></article>
+      <article><span>03 / COLLABORATE</span><h4>整合與協作</h4><p>透過需求整理、溝通及測試協調，讓不同部門朝共同目標推進。</p></article>
+      <article><span>04 / IMPROVE</span><h4>驗證與改善</h4><p>透過成效追蹤、作業測試與流程整理，持續尋找改善的可能性。</p></article>
+    </div>
+  </section>
+
+  <section class="work-block" id="work-ai" aria-labelledby="work-ai-title">
+    <div class="work-kicker">04 / AI IN MY WORKFLOW</div>
+    <div class="work-section-head"><div><h3 id="work-ai-title">AI in My Workflow.</h3><p>AI 不只是生成內容，更是協助我思考與實踐的工具。</p></div><p>我將 AI 視為工作中的協作夥伴，透過提問、需求拆解與反覆驗證，探索資訊整理、內容製作及問題分析的更多可能。</p></div>
+    <div class="ai-grid">
+      <article><span>DATA &amp; INSIGHTS</span><h4>資料整理與分析</h4><p>運用 GPT／Codex 協助整理銷售資料、分析消費行為及思考行銷策略；搭配 Excel 函數、樞紐分析與圖表，整理及驗證數據。</p></article>
+      <article><span>MARKETING &amp; CONTENT</span><h4>行銷與內容創作</h4><p>將 AI 應用於活動文案、視覺素材與推廣內容的發想及製作，並依照實際工作需求調整。</p></article>
+      <article><span>DIGITAL PRESENTATION</span><h4>數位化資訊呈現</h4><p>嘗試以 AI 協作將複雜資料轉化為視覺化報告及互動式網頁，探索更容易理解資訊的呈現方式。</p></article>
+    </div>
+    <div class="work-reflection"><span class="work-kicker">BEYOND THE TOOLS</span><p>對我來說，使用 AI 的價值不只是加快產出，而是在反覆嘗試與驗證的過程中，找到更適合問題的解決方法。</p></div>
+  </section>
+
+  <div class="work-outro"><div><span class="work-kicker">BEYOND THE WORK</span><h3>工作以外，也是一場探索。</h3><p>想看看生活中的我，如何從手機攝影、創作與新工具找到不同的靈感？</p></div><div class="actions"><button class="btn blue" data-page="life">探索 Life Me →</button><button class="btn secondary" data-page="choose">返回選擇路線</button><button class="btn secondary" data-page="ending">前往結尾</button></div></div>
+</section>
+
+<section id="life" class="stage" aria-labelledby="life-title">
+  <div class="chapter-top"><button class="backlink" data-page="choose">← 返回探索路線</button><div class="status">LIFE JOURNEY · 02/02</div></div>
+  <div class="chapter-head life-head"><div>
+    <div class="eyebrow peach">LIFE ME · THE EVERYDAY EXPLORER</div>
+    <h2 id="life-title">The Little<br><span class="life-accent">Things Matter.</span></h2>
+    <p class="life-intro-text">生活不一定每天都有什麼特別的事，但保持好奇，總能發現一些有趣的小細節。</p>
+    <p class="life-intro-text">工作之外，我喜歡用手機記錄生活，也樂於嘗試不同的創作工具。享受探索的過程，本身就是很有趣的事情。</p>
+    <div class="chapter-hello">💬 歡迎來看看生活中的小小發現！</div>
+  </div><div class="mini-visual chapter-visual">
+    <div class="chapter-actor" id="life-actor" role="img" aria-label="Life Me：拿著手機拍攝生活畫面的 3D Q版 Kevin">
+      <img class="chapter-still" src="assets/life.png" alt="" loading="lazy" />
+      <img class="chapter-gif" id="life-gif" src="assets/life-photo.gif" alt="" aria-hidden="true" />
+    </div>
+    <div class="chapter-animation-controls" aria-label="Life Me 動畫控制"><button type="button" id="life-replay">↻ 重播拍攝</button><button type="button" id="life-skip">跳過動畫</button></div>
+  </div></div>
+  <nav class="life-jump" aria-label="Life Me 章節導覽"><button type="button" data-life-scroll="life-photo">Through My Lens</button><button type="button" data-life-scroll="life-creative">Creative Playground</button></nav>
+
+  <section class="life-block" id="life-photo" aria-labelledby="life-photo-title">
+    <div class="life-kicker">01 / THROUGH MY LENS</div>
+    <div class="life-section-head"><div><h3 id="life-photo-title">City Observations.</h3><p>喜歡用手機記錄生活中遇見的畫面。可能是城市上空的飛機、海面上的夕陽，也可能是一群人抬頭欣賞煙火的瞬間。沒有刻意尋找什麼，只是把那些讓我想停下來看一眼的時刻，留在照片裡。</p></div><span class="life-note-inline">城市觀察 · 3 張精選</span></div>
+    <div class="life-photo-grid" aria-label="城市觀察攝影作品">
+      <button type="button" class="life-photo-card" data-life-preview="photo" data-life-index="0" aria-haspopup="dialog" aria-label="放大飛過城市的片刻"><span class="life-photo-media"><img src="assets/city-airplane.jpg" alt="水岸與城市建築上空，一架飛機從雲層下方經過" loading="lazy" width="1108" height="1477"></span><span class="life-photo-info"><strong>飛過城市的片刻</strong><small>Above the City ↗</small></span></button>
+      <button type="button" class="life-photo-card" data-life-preview="photo" data-life-index="1" aria-haspopup="dialog" aria-label="放大一起抬頭的瞬間"><span class="life-photo-media"><img src="assets/city-fireworks.jpg" alt="煙火照亮夜空，前景有一群仰頭觀看與拍攝的人" loading="lazy" width="1108" height="1477"></span><span class="life-photo-info"><strong>一起抬頭的瞬間</strong><small>Looking Up Together ↗</small></span></button>
+      <button type="button" class="life-photo-card" data-life-preview="photo" data-life-index="2" aria-haspopup="dialog" aria-label="放大光落在海上的時候"><span class="life-photo-media"><img src="assets/city-sunset.jpg" alt="夕陽從雲層透出，在海面形成金色光帶，遠處有一艘船" loading="lazy" width="1108" height="1477"></span><span class="life-photo-info"><strong>光落在海上的時候</strong><small>Where Light Meets the Sea ↗</small></span></button>
+    </div>
+    <div class="life-extra"><p>點選照片，可以放大欣賞完整畫面與背後的小故事。</p></div>
+  </section>
+
+  <section class="life-block" id="life-creative" aria-labelledby="life-creative-title">
+    <div class="life-kicker">02 / CREATIVE PLAYGROUND</div>
+    <div class="life-section-head"><div><h3 id="life-creative-title">From Ideas to Creation.</h3><p>有了感興趣的想法，就想試著把它做出來。從角色設計到社群視覺，我會運用 AI 與不同創作工具，邊嘗試、邊調整。</p></div></div>
+    <div class="life-creative-grid">
+      <article class="life-feature" aria-labelledby="life-mini-title">
+        <div class="life-kicker">CREATION 01 · MINI ME PROJECT</div><h4 id="life-mini-title">一個想法，三個 MINI ME。</h4>
+        <p>從想像中的人物形象出發，逐步延伸出 Explorer Me、Work Me 與 Life Me，最後成為這個互動網站裡陪伴訪客探索的角色。</p>
+        <div class="life-avatar-grid" aria-label="使用既有網站角色圖片展示 MINI ME 系列">
+          <div class="life-avatar"><img src="assets/explorer.png" alt="Explorer Me 既有角色圖" loading="lazy"><span>Explorer Me</span></div>
+          <div class="life-avatar"><img src="assets/work.png" alt="Work Me 既有角色圖" loading="lazy"><span>Work Me</span></div>
+          <div class="life-avatar"><img src="assets/life.png" alt="Life Me 既有角色圖" loading="lazy"><span>Life Me</span></div>
+        </div>
+      </article>
+      <div class="life-creative-side">
+        <article class="life-small-card" aria-labelledby="life-line-title">
+          <div class="life-kicker">CREATION 02 · ORIGINAL CHARACTERS</div><div class="life-small-title"><h4 id="life-line-title">LINE 原創角色</h4><span>外部作品</span></div>
+          <p><strong>通勤寶寶經營中｜3 組原創貼圖。</strong>將日常生活中的無奈與幽默，轉化為三個不同個性的角色，從角色設定、情境發想到貼圖製作與正式上架。</p>
+          <p class="life-series-note">創作未完待續，更多有趣的角色故事，敬請期待！</p>
+          <div class="life-extra"><a class="life-external-link" href="https://store.line.me/stickershop/author/5590902/zh-Hant" target="_blank" rel="noopener noreferrer" aria-label="另開分頁查看 LINE 原創貼圖創作者頁">查看我的 LINE 原創作品 ↗</a></div>
+        </article>
+        <article class="life-small-card" aria-labelledby="life-social-title">
+          <div class="life-kicker">CREATION 03 · SOCIAL VISUALS</div><div class="life-small-title"><h4 id="life-social-title">社群視覺創作</h4><span>3 張精選</span></div>
+          <p>喜歡嘗試不同的視覺呈現方式，從生活照片的文字編排，到資訊圖解與網站概念設計，將腦海裡的想法逐漸變成具體畫面。</p>
+          <div class="life-social-grid" aria-label="社群視覺創作精選作品">
+            <button type="button" class="life-visual-card" data-life-preview="social" data-life-index="0" aria-haspopup="dialog" aria-label="放大讓日常多一點溫度"><img src="assets/social-everyday-food.png" alt="自攝料理便當照片配上白色手繪文字與線條" loading="lazy" width="941" height="1672"><small>生活攝影 × 視覺編排</small></button>
+            <button type="button" class="life-visual-card" data-life-preview="social" data-life-index="1" aria-haspopup="dialog" aria-label="放大把抽象概念變得更容易理解"><img src="assets/social-heartbeat-visual.png" alt="用排隊與心跳節奏的比喻製作四格資訊圖" loading="lazy" width="1448" height="1086"><small>情境比喻 × 資訊圖解</small></button>
+            <button type="button" class="life-visual-card" data-life-preview="social" data-life-index="2" aria-haspopup="dialog" aria-label="放大從一個想法發展成一個世界"><img src="assets/social-website-concept.png" alt="Kevin's World 早期角色設定、視覺配色和網站頁面設計概念板" loading="lazy" width="1672" height="941"><small>角色設定 × 網站概念</small></button>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <div class="life-closing" aria-label="Life Me 章節結尾">
+    <div><span class="life-kicker">BEYOND THE EVERYDAY</span><h3>Stay Curious. Keep Exploring.</h3><p>從好奇開始，透過嘗試、調整與發現，慢慢找到自己喜歡的方式。想看看工作中的我，如何把想法轉化為行動嗎？</p></div>
+    <div class="actions"><button class="btn peach" data-page="work">探索 Work Me →</button><button class="btn secondary" data-page="ending">前往結尾</button></div>
+  </div>
+</section>
+<section id="ending" class="stage" aria-labelledby="ending-title">
+  <div class="end-card"><div class="eyebrow">THE NEXT CHAPTER</div><h2 id="ending-title">Nice to meet you.<br>Let's keep exploring.</h2><p>謝謝你來到我的小小世界。無論是工作中的思考與協作，還是生活裡的觀察與創作，都是我持續探索的不同方式。</p><div class="actions"><button class="btn" data-page="work">看看工作的我</button><button class="btn secondary" data-page="life">看看生活中的我</button><button class="btn secondary" data-page="welcome">重新探索 ↺</button></div></div>
+</section>
+
+<dialog id="life-preview" class="life-preview" aria-labelledby="life-preview-title" aria-describedby="life-preview-desc">
+  <div class="life-preview-body">
+    <div class="life-preview-top"><div><span class="life-kicker" id="life-preview-tag">作品預覽</span><h3 id="life-preview-title">作品名稱</h3><p class="life-preview-english" id="life-preview-english"></p></div><button type="button" class="life-preview-close" id="life-preview-close" aria-label="關閉預覽">×</button></div>
+    <div class="life-preview-frame"><img id="life-preview-image" src="assets/city-airplane.jpg" alt="" /></div>
+    <p class="life-preview-description" id="life-preview-desc">作品介紹</p>
+    <p class="life-preview-notice" id="life-preview-notice" hidden></p>
+    <div class="life-preview-actions"><button type="button" id="life-preview-prev">← 上一張</button><span class="life-preview-counter" id="life-preview-counter">1 / 3</span><button type="button" id="life-preview-next">下一張 →</button></div>
+    <a class="life-preview-full" id="life-preview-full" href="assets/city-airplane.jpg" target="_blank" rel="noopener noreferrer">在新分頁檢視原尺寸圖片 ↗</a>
+  </div>
+</dialog>
+
+<footer class="footer"><span>© Kevin's World · Stay Curious. Keep Exploring.</span></footer>
+</main>
+<script>
+(()=>{
+ const known=['welcome','story','choose','work','life','ending'];
+ const seen={work:false,life:false};
+ const reduced=window.matchMedia('(prefers-reduced-motion: reduce)');
+ const animations={
+  welcome:{actor:document.getElementById('wave-actor'),gif:document.getElementById('explorer-wave'),skip:document.getElementById('skip-wave'),replay:document.getElementById('replay-wave'),file:'assets/explorer-wave.gif',duration:1920},
+  work:{actor:document.getElementById('work-actor'),gif:document.getElementById('work-gif'),skip:document.getElementById('work-skip'),replay:document.getElementById('work-replay'),file:'assets/work-intro.gif',duration:1920},
+  life:{actor:document.getElementById('life-actor'),gif:document.getElementById('life-gif'),skip:document.getElementById('life-skip'),replay:document.getElementById('life-replay'),file:'assets/life-photo.gif',duration:1560}
+ };
+
+ // V1.3 chapter switcher. The approved story copy stays in semantic HTML.
+ const storyChapters=[...document.querySelectorAll('.story-scene')];
+ const storySteps=[...document.querySelectorAll('[data-story-step]')];
+ const storyGuides=[
+   '從好奇開始，慢慢找到自己的方向。',
+   '在工作中累積經驗，也發現自己的興趣。',
+   '工作以外，依然保持好奇。',
+   '保持好奇，把握當下，在每一次嘗試中繼續成長。'
+ ];
+ let storyIndex=0;
+ function setStoryScene(index,scroll=false){
+   storyIndex=Math.max(0,Math.min(storyChapters.length-1,index));
+   storyChapters.forEach((scene,i)=>{scene.hidden=(i!==storyIndex);});
+   storySteps.forEach((step,i)=>{
+     if(i===storyIndex){step.setAttribute('aria-current','step');}
+     else {step.removeAttribute('aria-current');}
+   });
+   document.getElementById('story-guide').textContent=storyGuides[storyIndex];
+   document.getElementById('story-counter').textContent='STORY '+String(storyIndex+1).padStart(2,'0')+' / 04';
+   document.getElementById('story-progress').setAttribute('aria-valuenow',String(storyIndex+1));
+   document.getElementById('story-progress-fill').style.width=((storyIndex+1)/storyChapters.length*100)+'%';
+   document.getElementById('story-prev').disabled=(storyIndex===0);
+   document.getElementById('story-next').textContent=storyIndex===storyChapters.length-1?'選擇探索方向 →':'下一幕 →';
+   if(scroll && document.getElementById('story').classList.contains('active')){
+     document.getElementById('story-board').scrollIntoView({behavior:reduced.matches?'instant':'smooth',block:'start'});
+   }
+ }
+ storySteps.forEach(step=>step.addEventListener('click',()=>setStoryScene(Number(step.dataset.storyStep),true)));
+ document.getElementById('story-prev').addEventListener('click',()=>setStoryScene(storyIndex-1,true));
+ document.getElementById('story-next').addEventListener('click',()=>{
+   if(storyIndex===storyChapters.length-1) show('choose');
+   else setStoryScene(storyIndex+1,true);
+ });
+ setStoryScene(0);
+
+ // V1.4: interactive project cards and inline case studies.
+ const workProjectButtons=[...document.querySelectorAll('[data-project]')];
+ const workCasePanels=[...document.querySelectorAll('[data-case]')];
+ const workCaseHint=document.getElementById('case-hint');
+ let openWorkCase=null;
+ function openCase(which,scroll=true){
+   const next=openWorkCase===which?null:which;
+   openWorkCase=next;
+   workProjectButtons.forEach(button=>{
+     const isOpen=button.dataset.project===next;
+     button.classList.toggle('is-selected',isOpen);
+     button.setAttribute('aria-expanded',String(isOpen));
+     const label=button.querySelector('.project-open');
+     if(label)label.firstChild.textContent=isOpen?'收合案例 ':'探索完整案例 ';
+   });
+   workCasePanels.forEach(panel=>{panel.hidden=panel.dataset.case!==next;});
+   workCaseHint.hidden=!!next;
+   if(next && scroll){
+     const target=document.getElementById('case-'+next);
+     target.scrollIntoView({behavior:reduced.matches?'instant':'smooth',block:'start'});
+   }
+ }
+ workProjectButtons.forEach(button=>button.addEventListener('click',()=>openCase(button.dataset.project)));
+ document.querySelectorAll('[data-close-case]').forEach(button=>button.addEventListener('click',()=>{
+   const was=openWorkCase;
+   openCase(null,false);
+   const match=document.querySelector('[data-project="'+was+'"]');
+   match?.focus({preventScroll:true});
+   match?.scrollIntoView({behavior:reduced.matches?'instant':'smooth',block:'nearest'});
+ }));
+ document.querySelectorAll('[data-work-scroll]').forEach(button=>button.addEventListener('click',()=>{
+   document.getElementById(button.dataset.workScroll)?.scrollIntoView({behavior:reduced.matches?'instant':'smooth',block:'start'});
+ }));
+ document.querySelectorAll('[data-flow]').forEach(button=>button.addEventListener('click',()=>{
+   const value=button.dataset.flow;
+   document.querySelectorAll('[data-flow]').forEach(choice=>choice.setAttribute('aria-pressed',String(choice.dataset.flow===value)));
+   document.querySelectorAll('[data-flow-panel]').forEach(panel=>{panel.hidden=panel.dataset.flowPanel!==value;});
+ }));
+
+
+ // V1.6 — Approved Life Me gallery with locally bundled original photo/visual files.
+ document.querySelectorAll('[data-life-scroll]').forEach(button=>button.addEventListener('click',()=>{
+   document.getElementById(button.dataset.lifeScroll)?.scrollIntoView({behavior:reduced.matches?'instant':'smooth',block:'start'});
+ }));
+ const lifeItems={
+   photo:[
+     {title:'飛過城市的片刻',english:'Above the City',src:'assets/city-airplane.jpg',alt:'水岸與城市建築上空，一架飛機從雲層下方經過',desc:'飛機從城市上空緩緩經過，遠方的建築、水岸與天空交織成日常風景。有時候，只要抬起頭，就能發現平常不曾留意的畫面。'},
+     {title:'一起抬頭的瞬間',english:'Looking Up Together',src:'assets/city-fireworks.jpg',alt:'煙火照亮夜空，前景有一群仰頭觀看與拍攝的人',desc:'煙火在夜空中綻放，人們紛紛停下腳步，拿起手機記錄眼前的景象。除了煙火本身，那些一起抬頭的人們，也是這個夜晚值得留下的畫面。'},
+     {title:'光落在海上的時候',english:'Where the Light Meets the Sea',src:'assets/city-sunset.jpg',alt:'夕陽從雲層透出，在海面形成金色光帶，遠處有一艘船',desc:'夕陽穿過雲層，將金色的光灑向海面，遠方還有一艘船的身影。喜歡這種不用特別安排，就能遇見的風景。'}
+   ],
+   social:[
+     {title:'讓日常多一點溫度',english:'Everyday Moments',src:'assets/social-everyday-food.png',alt:'自攝料理便當照片配上白色手繪文字與線條',desc:'從自己拍攝的料理照片出發，搭配手繪風格的文字與圖像點綴，將平凡的生活紀錄變成一張充滿個人風格的視覺作品。'},
+     {title:'把抽象概念變得更容易理解',english:'Visualizing Ideas',src:'assets/social-heartbeat-visual.png',alt:'用排隊與心跳節奏的比喻製作四格資訊圖',desc:'以「心臟漏一拍」為主題，嘗試運用排隊進場的情境比喻，將較難想像的概念轉化為圖像與文字結合的資訊圖。',notice:'這是一份視覺化創作練習，並非經醫學驗證的衛教資料。'},
+     {title:'從一個想法，發展成一個世界',english:'From Concept to Creation',src:'assets/social-website-concept.png',alt:'Kevin\'s World 早期角色設定、視覺配色和網站頁面設計概念板',desc:'從 MINI ME 角色設定出發，思考網站架構、視覺風格、配色與互動體驗，製作 Kevin\'s World 的早期概念設計圖。這份設計也成為後續實際建置個人網站時的創作參考。',notice:'此為早期設計概念圖，不代表目前網站的實際畫面。'}
+   ]
+ };
+ const lifePreview=document.getElementById('life-preview');
+ const lifePreviewTitle=document.getElementById('life-preview-title');
+ const lifePreviewTag=document.getElementById('life-preview-tag');
+ const lifePreviewDesc=document.getElementById('life-preview-desc');
+ const lifePreviewEnglish=document.getElementById('life-preview-english');
+ const lifePreviewImage=document.getElementById('life-preview-image');
+ const lifePreviewNotice=document.getElementById('life-preview-notice');
+ const lifePreviewFull=document.getElementById('life-preview-full');
+ const lifePreviewCounter=document.getElementById('life-preview-counter');
+ let lifePreviewType='photo',lifePreviewIndex=0,lifePreviewSource=null;
+ function renderLifePreview(){
+   const isPhoto=lifePreviewType==='photo';
+   const list=lifeItems[lifePreviewType];
+   const item=list[lifePreviewIndex];
+   lifePreviewTag.textContent=isPhoto?'CITY OBSERVATIONS / PHOTO':'CREATIVE PLAYGROUND / SOCIAL';
+   lifePreviewTitle.textContent=item.title;
+   lifePreviewEnglish.textContent=item.english;
+   lifePreviewDesc.textContent=item.desc;
+   lifePreviewImage.src=item.src;
+   lifePreviewImage.alt=item.alt;
+   lifePreviewNotice.textContent=item.notice||'';
+   lifePreviewNotice.hidden=!item.notice;
+   lifePreviewFull.href=item.src;
+   lifePreviewCounter.textContent=(lifePreviewIndex+1)+' / '+list.length;
+ }
+ document.querySelectorAll('[data-life-preview]').forEach(button=>button.addEventListener('click',()=>{
+   lifePreviewSource=button;
+   lifePreviewType=button.dataset.lifePreview;
+   lifePreviewIndex=Number(button.dataset.lifeIndex);
+   renderLifePreview();
+   if(typeof lifePreview.showModal==='function')lifePreview.showModal();
+   else lifePreview.setAttribute('open','');
+ }));
+ function closeLifePreview(){
+   if(typeof lifePreview.close==='function'&&lifePreview.open)lifePreview.close();
+   else lifePreview.removeAttribute('open');
+ }
+ function moveLifePreview(direction){
+   const length=lifeItems[lifePreviewType].length;
+   lifePreviewIndex=(lifePreviewIndex+direction+length)%length;
+   renderLifePreview();
+ }
+ document.getElementById('life-preview-close').addEventListener('click',closeLifePreview);
+ document.getElementById('life-preview-prev').addEventListener('click',()=>moveLifePreview(-1));
+ document.getElementById('life-preview-next').addEventListener('click',()=>moveLifePreview(1));
+ lifePreview.addEventListener('click',event=>{if(event.target===lifePreview)closeLifePreview();});
+ lifePreview.addEventListener('close',()=>lifePreviewSource?.focus({preventScroll:true}));
+ lifePreview.addEventListener('keydown',event=>{
+   if(event.key==='ArrowLeft'){event.preventDefault();moveLifePreview(-1);}
+   if(event.key==='ArrowRight'){event.preventDefault();moveLifePreview(1);}
+ });
+ let touchX=null;
+ lifePreviewImage.addEventListener('touchstart',event=>{touchX=event.changedTouches[0]?.screenX??null;},{passive:true});
+ lifePreviewImage.addEventListener('touchend',event=>{
+   if(touchX===null)return;
+   const delta=(event.changedTouches[0]?.screenX??touchX)-touchX;
+   if(Math.abs(delta)>45)moveLifePreview(delta<0?1:-1);
+   touchX=null;
+ },{passive:true});
+
+ let running=null;
+ let seq=0;
+ function stopAnimation(){
+   ++seq;
+   if(running!==null){clearTimeout(running);running=null;}
+   for(const a of Object.values(animations)){
+     a.actor.classList.remove('is-playing');
+     a.skip.hidden=true;
+   }
+ }
+ function startAnimation(page){
+   stopAnimation();
+   const a=animations[page];
+   if(!a || reduced.matches)return;
+   const id=++seq;
+   // Changing query restarts a GIF each time this page opens.
+   a.gif.src=a.file+'?v12='+id;
+   a.actor.classList.add('is-playing');
+   a.skip.hidden=false;
+   running=setTimeout(()=>{if(seq===id)stopAnimation()},a.duration);
+ }
+ for(const [page,a] of Object.entries(animations)){
+   a.replay.addEventListener('click',()=>startAnimation(page));
+   a.skip.addEventListener('click',stopAnimation);
+ }
+ reduced.addEventListener?.('change',()=>{
+   if(reduced.matches)stopAnimation();
+   else if(document.querySelector('.stage.active')?.id in animations){
+     const page=document.querySelector('.stage.active')?.id;
+     if(page)startAnimation(page);
+   }
+ });
+ function show(page,push=true){
+   if(!known.includes(page))page='welcome';
+   document.querySelectorAll('.stage').forEach(stage=>{
+     const active=stage.id===page;
+     stage.classList.toggle('active',active);
+     stage.setAttribute('aria-hidden',String(!active));
+   });
+   if(page==='work'||page==='life')seen[page]=true;
+   if(animations[page])startAnimation(page);else stopAnimation();
+   for(const name of ['work','life'])document.getElementById(name+'-choice').classList.toggle('seen',seen[name]);
+   document.querySelectorAll('.nav-btn').forEach(button=>{
+     if(button.dataset.page===page)button.setAttribute('aria-current','page');
+     else button.removeAttribute('aria-current');
+   });
+   if(push)history.pushState({page},'',`#${page}`);
+   window.scrollTo({top:0,behavior:'instant'});
+   document.getElementById('main').focus({preventScroll:true});
+ }
+ document.addEventListener('click',e=>{
+   const el=e.target.closest('[data-page]');
+   if(!el)return;
+   e.preventDefault();show(el.dataset.page);
+ });
+ window.addEventListener('popstate',()=>show(location.hash.slice(1),false));
+ show(location.hash.slice(1)||'welcome',false);
+})();
+</script>
+</body>
+</html>
